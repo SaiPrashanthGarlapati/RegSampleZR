@@ -1,8 +1,8 @@
 # RegSampleZR
 
 pre-requisites for running this Project
-Maven
-System should have the Mozilla FireFox
+1.Maven
+2.System should have the Mozilla FireFox
 
 Steps for running 
 Configure the geckodriver (available in the this repo)path in the config.properties
