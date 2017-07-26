@@ -5,25 +5,26 @@ import java.io.InputStream;
 import java.util.Properties;
 
 import org.testng.annotations.BeforeSuite;
+import org.testng.log4testng.Logger;
 
 public class PropertyReader {
+	final static Logger logger = Logger.getLogger(PropertyReader.class);
 
 	@BeforeSuite
-	public String getProperty(String name){
-		System.out.println("In Property Reader");
-		String property="";
-		try{
+	public String getProperty(String name) {
+
+		String property = "";
+		try {
 			Properties prop = new Properties();
-			System.out.println("In Property Reader1");
 			String config = System.getenv("config_path");
-			System.out.println("In Property Reader : "+config);
-			InputStream input = new FileInputStream(config +"/config.properties");
+			System.out.println("In Property Reader : " + config);
+			InputStream input = new FileInputStream(config + "/config.properties");
 			prop.load(input);
 			property = prop.getProperty(name);
-			System.out.print("Requested property for :"+ name + " and property is "+ property);
-			}catch(Exception e){
-				System.out.println("Exception Occured");
-			}
+			logger.debug("Requested property for :" + name + " and property is " + property);
+		} catch (Exception e) {
+			logger.error("Exception Occured" + e.getMessage());
+		}
 		return property;
 	}
 }

@@ -1,14 +1,14 @@
 package com.gsp.utils;
 
-import javax.inject.Inject;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeSuite;
+import org.testng.log4testng.Logger;
 
 public class SeleniumDriver {
-
+	final static Logger logger = Logger.getLogger(SeleniumDriver.class);
+	
 	private static PropertyReader propertyReader = new PropertyReader();
 	private static final String geckoPath = propertyReader.getProperty("geckopath");
 	//private static final String geckoPath = "";
@@ -19,6 +19,7 @@ public class SeleniumDriver {
 		if(driver != null){
 			return driver;
 		}else{
+			logger.info("Initializing the Web Driver");	
 		System.out.println("Starting Firefox browser");
 		System.setProperty("webdriver.gecko.driver", geckoPath + "geckodriver.exe");
 		 driver = new FirefoxDriver();
